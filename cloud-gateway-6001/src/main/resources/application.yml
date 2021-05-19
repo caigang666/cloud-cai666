@@ -1,0 +1,26 @@
+server:
+  port: 6001
+spring:
+  application:
+    name: cloud-gateway
+  cloud:
+    #注册到consul注册中心
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+    #gateway网关路由配置
+    gateway:
+      discovery:
+        locator:
+          enabled: true #开启从注册中心动态创建路由的功能，利用微服务名进行路由
+      routes:
+        - id: gateway-service1  #我们自定义的路由 ID，保持唯一
+          #uri: http://localhost:8001  #目标服务地址
+          #这里所用的协议为lb,代表启动网关的负载均衡功能，该负载均衡地址是Gateway根据微服务名自动创建而来的
+          uri: lb://cloud-provider-goods
+          predicates:
+           # - Path=/goods/getGoods/**    #断言，条件满足则路由跳转
+          #如果有多个断言路径用逗号分隔如：
+          - Path=/**

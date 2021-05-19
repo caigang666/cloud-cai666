@@ -1,0 +1,21 @@
+#服务端口
+server:
+  port: 9002
+
+spring:
+  application:
+    #应用程序名称
+    name: cloud-consumer-order
+
+  cloud:
+    consul:
+      #注册中心的配置
+      host: localhost
+      port: 8500
+      discovery:
+        #主机名称
+        hostname: 127.0.0.1
+        #对外暴露的服务名称
+        service-name: ${spring.application.name}
+        #是否注册
+        register: true

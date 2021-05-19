@@ -1,0 +1,26 @@
+#服务端口
+server:
+  port: 9001
+
+spring:
+  application:
+    name: cloud-book-trade
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        hostname: 127.0.0.1
+        service-name: ${spring.application.name}
+        register: true
+
+#指定商品微服务负载均衡的策略采用的是随机
+cloud-provider-goods:
+  ribbon:
+    #NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+   NFLoadBalancerRuleClassName: xg.myRule.MyRule
+   ConnectTimeout: 250    #请求连接的超时时间
+   ReadTimeout: 1000       #请求处理的超时时间
+   OkToRetryOnAllOperations: true    #对所有操作请求都进行重试
+   MaxAutoRetriesNextServer: 1    #切换实例的重试次数
+   MaxAutoRetries: 1              #对当前实例的重试次数

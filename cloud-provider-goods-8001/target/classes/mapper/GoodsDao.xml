@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xg.dao.GoodsDao">
+
+    <resultMap id="BaseResultMap" type="entity.Goods">
+        <!--@Table goods-->
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="gname" column="gname" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="NUMERIC"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          id, gname, price
+        from reds.goods
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          id, gname, price
+        from reds.goods
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          id, gname, price
+        from reds.goods
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="gname != null and gname != ''">
+                and gname = #{gname}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into reds.goods(gname, price)
+        values (#{gname}, #{price})
+    </insert>
+    <insert id="AddGoods">
+
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update reds.goods
+        <set>
+            <if test="gname != null and gname != ''">
+                gname = #{gname},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from reds.goods where id = #{id}
+    </delete>
+
+</mapper>

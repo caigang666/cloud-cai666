@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="cloud-user-7001" />
+        <module name="cloud-provider-goods-8002" />
+        <module name="cloud-provider-goods-8001" />
+        <module name="cloud-api" />
+        <module name="cloud-config-client" />
+        <module name="cloud-bookorder-8010" />
+        <module name="cloud-alibaba-sentinel-8400" />
+        <module name="cloud-book-trade-2001" />
+        <module name="cloud-provider-goods-8003" />
+        <module name="cloud-gateway-6001" />
+        <module name="cloud-config-3344" />
+        <module name="cloud-consumer-order-9002" />
+        <module name="cloud-consumer-order-9001" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cloud-provider-goods-8001 (1)" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
